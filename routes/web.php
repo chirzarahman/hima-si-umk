@@ -7,5 +7,13 @@ Route::get('/', function () {
 });
 
 Route::get('/beranda', function () {
-    return view('beranda');
+    return view('beranda', ["title" => "Himapro SI UMK",]);
+});
+
+Route::get('/login', function () {
+    return view('admin.login.index', ["title" => "Himapro SI UMK",]);
+});
+
+Route::get('/register', function () {
+    return view('admin.register.index', ["title" => "Himapro SI UMK",]);
 });
