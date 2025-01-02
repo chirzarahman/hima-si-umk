@@ -1,5 +1,5 @@
 <!-- KELOMPOK_1_KELAS_A -->
-@extends('.layouts.main')
+@extends('layouts.main')
 @section('container')
 <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
