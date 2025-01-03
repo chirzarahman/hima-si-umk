@@ -12,7 +12,6 @@
 <body>
     @yield('container')
 
-    <script src="{{asset('js/chart.js')}}"></script>
 </body>
 
 </html>

@@ -26,8 +26,17 @@ Route::get('/dashboard', function () {
 // Route::get('/list-anggota', function () {
 //     return view('admin.users.index', ["title" => "Himapro SI UMK",]);
 // });
-Route::get('/data-anggota', [UsersController::class, 'index']);
 
 Route::get('/data-event', function () {
-    return view('admin.events.index', ["title" => "Himapro SI UMK",]);
+    return view('admin.dashboard.events.index', ["title" => "Himapro SI UMK",]);
 });
+
+Route::resource('users', UsersController::class);
+Route::get('/data-anggota', [UsersController::class, 'index']);
+
+// Route::get('/tambah-anggota', function () {
+//     return view('admin.dashboard.users.create', ["title" => "Himapro SI UMK",]);
+// });
+// Route::get('/edit-anggota/{id}', function () {
+//     return view('admin.dashboard.users.edit', ["title" => "Himapro SI UMK",]);
+// });
