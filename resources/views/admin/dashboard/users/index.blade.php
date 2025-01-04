@@ -4,7 +4,7 @@
 <h1 class="text-3xl font-semibold mb-6">Anggota HIMAPRO SI UMK</h1>
 
 @session('success')
-<div class="absolute bottom-0 right-4">
+<div class="bottom-0 right-4 z-50 fixed">
     <div id="toast-success"
         class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-green-100 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
         role="alert">
@@ -65,7 +65,7 @@
                     {{ $loop->iteration }}
                 </th>
                 <td class="px-6 py-4">
-                    <img src="storages/{{ $user->image }}" width="100px" height="100px" alt="pp">
+                    <img src="storages/users/{{ $user->image }}" width="100px" height="100px" alt="pp">
                 </td>
                 <td class="px-6 py-4">
                     {{ $user->nama }}

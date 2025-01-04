@@ -11,6 +11,7 @@
             <li>{{ $user->nim }}</li>
             <li>{{ $user->email }}</li>
             <li>{{ $user->alamat }}</li>
+            <li>{{ $user->departemen_id }}</li>
         </ul>
     </div>
 </div>

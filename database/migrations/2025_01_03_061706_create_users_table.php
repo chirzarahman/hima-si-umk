@@ -18,7 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('nim')->unique();
             $table->string('password');
-            $table->string('departemen')->nullable();
+            // $table->unsignedBigInteger('departemen_id')->default(1)->change(); // Tambahkan kolom departemen_id
+            $table->foreignId('departemen_id')->references('id')->on('departments')->onDelete('cascade');
             $table->string('jabatan')->nullable();
             $table->string('angkatan');
             $table->string('jenis_kelamin');

@@ -15,11 +15,13 @@
     <div
         class="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-between items-center dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-amber-600 dark:text-white">Divisi</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-amber-600 dark:text-white">Departemen</h5>
         </div>
         <dt
             class="w-20 h-20 rounded-full bg-amber-100 dark:bg-gray-500 text-amber-600 dark:text-amber-300 text-4xl font-medium flex items-center justify-center mb-1">
-            124</dt>
+            {{ $departments }}
+
+        </dt>
     </div>
     <div
         class="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-between items-center dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -28,7 +30,8 @@
         </div>
         <dt
             class="w-20 h-20 rounded-full bg-emerald-100 dark:bg-gray-500 text-emerald-600 dark:text-emerald-300 text-4xl font-medium flex items-center justify-center mb-1">
-            290</dt>
+            {{ $users }}
+        </dt>
     </div>
 </div>
 

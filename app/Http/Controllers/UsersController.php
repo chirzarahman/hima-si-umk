@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Department;
 
 class UsersController extends Controller
 {
@@ -22,7 +22,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.users.create', ["title" => "Himapro SI UMK"]);
+        $departments = Department::select('id', 'nama')->get();
+        return view('admin.dashboard.users.create', ["title" => "Himapro SI UMK"], compact('departments'));
     }
 
     /**
@@ -35,6 +36,7 @@ class UsersController extends Controller
             'nim' => ['required', 'max:9', 'unique:users'],
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:255',
+            'departemen_id' => 'required|exists:departments,id',
             // 'angkatan' => 'required|max:255',
             // 'jenis_kelamin' => 'required|max:255',
             'alamat' => 'required',
@@ -44,14 +46,14 @@ class UsersController extends Controller
         $input = $request->all();
 
         if ($image = $request->file('image')) {
-            $destinationPath = 'storages/';
+            $destinationPath = 'storages/users/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
-
+// dd($input);
         User::create($input);
-        return redirect('/data-anggota')->with('success', 'Anggota berhasil ditambah.');
+        return redirect()->route('users.index')->with('success', 'Anggota berhasil ditambah.');
     }
 
     /**
@@ -87,7 +89,7 @@ class UsersController extends Controller
 
         $input = $request->all();
         if ($image = $request->file('image')) {
-            $destinationPath = 'storages/';
+            $destinationPath = 'storages/users/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -96,7 +98,7 @@ class UsersController extends Controller
         }
 
         $user->update($input);
-        return redirect('/data-anggota')->with('success', 'Anggota berhasil diubah.');
+        return redirect()->route('users.index')->with('success', 'Anggota berhasil diubah.');
     }
 
     /**
@@ -105,6 +107,6 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('/data-anggota')->with('success', 'Anggota berhasil didelete');
+        return redirect()->route('users.index')->with('success', 'Anggota berhasil didelete');
     }
 }

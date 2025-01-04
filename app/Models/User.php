@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'nim',
-        'departemen',
+        'departemen_id',
         'jabatan',
         'angkatan',
         'jenis_kelamin',

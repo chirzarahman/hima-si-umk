@@ -31,15 +31,14 @@
                 placeholder="name@mail.com" required />
         </div>
         <div>
-            <label for="countries"
+            <label for="departemen_id"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departemen</label>
-            <select id="countries"
+            <select id="departemen_id" name="departemen_id" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500">
                 <option selected disabled hidden value="">Pilih Departemen</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+                @foreach ($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->nama }}</option>
+                @endforeach
             </select>
         </div>
         <div>
