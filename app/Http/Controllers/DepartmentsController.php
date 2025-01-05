@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DepartmentsController extends Controller
 {
@@ -13,7 +14,7 @@ class DepartmentsController extends Controller
     public function index(Department $department)
     {
         $departments = Department::all();
-        return view('admin.dashboard.departments.index', ["title" => "Himapro SI UMK"], compact('departments'));
+        return view('dashboard.departments.index', ["title" => "Himapro SI UMK"], compact('departments'));
     }
 
     /**
@@ -21,27 +22,25 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.departments.create', ["title" => "Himapro SI UMK"]);
+        return view('dashboard.departments.create', ["title" => "Himapro SI UMK"]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Department $department)
+    public function store(Request $request)
     {
         $request->validate([
             'nama' => 'required|max:255',
             'detail' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
         $input = $request->all();
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'storages/departments/';
-            $iconImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $iconImage);
-            $input['image'] = "$iconImage";
+        if ($request->hasFile('icon')) {
+            $iconPath = $request->file('icon')->store('departments', 'public');
+            $input['icon'] = $iconPath;
         }
 
         Department::create($input);
@@ -53,7 +52,7 @@ class DepartmentsController extends Controller
      */
     public function show(Department $department)
     {
-        return view('admin.dashboard.departments.show', ["title" => "Himapro SI UMK"], compact('department'));
+        return view('dashboard.departments.show', ["title" => "Himapro SI UMK"], compact('department'));
     }
 
     /**
@@ -61,7 +60,7 @@ class DepartmentsController extends Controller
      */
     public function edit(Department $department)
     {
-        return view('admin.dashboard.departments.edit', ["title" => "Himapro SI UMK"], compact('department'));
+        return view('dashboard.departments.edit', ["title" => "Himapro SI UMK"], compact('department'));
     }
 
     /**
@@ -72,18 +71,18 @@ class DepartmentsController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'detail' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
         $input = $request->all();
-        
-        if ($image = $request->file('image')) {
-            $destinationPath = 'storages/departments/';
-            $iconImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $iconImage);
-            $input['image'] = "$iconImage";
+
+        if ($request->hasFile('icon')) {
+            if ($department->icon) {
+                Storage::disk('public')->delete($department->icon);
+            }
+            $iconPath = $request->file('icon')->store('departments', 'public');
+            $input['icon'] = $iconPath;
         } else {
-            unset($input['image']);
+            unset($input['icon']);
         }
 
         $department->update($input);
@@ -95,6 +94,9 @@ class DepartmentsController extends Controller
      */
     public function destroy(Department $department)
     {
+        if ($department->icon) {
+            Storage::disk('public')->delete($department->icon);
+        }
         $department->delete();
         return redirect()->route('departments.index')->with('success', 'Departemen berhasil didelete');
     }

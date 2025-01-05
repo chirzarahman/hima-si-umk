@@ -16,15 +16,15 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('nim')->unique();
+            $table->string('nim')->unique()->nullable();
+            $table->string('nid')->unique()->nullable();
             $table->string('password');
-            // $table->unsignedBigInteger('departemen_id')->default(1)->change(); // Tambahkan kolom departemen_id
-            $table->foreignId('departemen_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreignId('departemen_id')->nullable()->constrained('departments')->nullOnDelete();
             $table->string('jabatan')->nullable();
-            $table->string('angkatan');
-            $table->string('jenis_kelamin');
-            $table->text('alamat');
-            $table->string('image')->nullable();
+            $table->string('angkatan')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <!-- KELOMPOK_1_KELAS_A -->
-@extends('admin.layouts.main')
+@extends('layouts.sidebar')
 @section('content')
-<h1 class="text-3xl font-semibold mb-6">Anggota HIMAPRO SI UMK</h1>
+<h1 class="text-3xl font-semibold mb-6">Departemen HIMAPRO SI UMK</h1>
 
 @session('success')
 <div class="bottom-0 right-4 z-50 fixed">
@@ -31,9 +31,10 @@
 </div>
 @endsession
 
-<a href="{{ route('users.create') }}"
+<a href="{{ route('departments.create') }}"
     class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">Tambah
-    Anggota</a>
+    Departemen
+</a>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
@@ -42,16 +43,13 @@
                     NO
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Image
+                    Icon
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nama
+                    Nama Departemen
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Departemen
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Jabatan
+                    Detail
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
                     Aksi
@@ -59,25 +57,22 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @foreach ($departments as $department)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $loop->iteration }}
                 </th>
                 <td class="px-6 py-4">
-                    <img src="storages/users/{{ $user->image }}" width="100px" height="100px" alt="pp">
+                    <img src="storage/{{ $department->icon }}" width="100px" height="100px" alt="icon">
                 </td>
                 <td class="px-6 py-4">
-                    {{ $user->nama }}
+                    {{ $department->nama }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $user->divisi }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $user->jabatan }}
+                    {{ $department->detail }}
                 </td>
                 <td class="px-6 py-4 space-x-2 flex items-center justify-center">
-                    <a href="{{ route('users.show', $user->id) }}"
+                    <a href="{{ route('departments.show', $department->id) }}"
                         class="bg-sky-100 p-2 rounded-full hover:bg-sky-600 hover:text-white transition-colors font-medium text-sky-600 dark:text-sky-500 hover:underline">
                         <svg class="w-6 h-6" fill="currentColor" id="Layer_1" style="enable-background:new 0 0 512 512;"
                             version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
@@ -90,14 +85,14 @@
                             </g>
                         </svg>
                     </a>
-                    <a href="{{ route('users.edit', $user->id) }}"
+                    <a href="{{ route('departments.edit', $department->id) }}"
                         class="bg-yellow-100 p-2 rounded-full hover:bg-yellow-300 hover:text-white transition-colors font-medium text-yellow-300 dark:text-yellow-500 hover:underline">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3 17.75C3 19.5449 4.45507 21 6.25 21H11.1651L11.5209 19.5768C11.6829 18.9288 12.018 18.3371 12.4903 17.8648L18.3927 11.9624C19.1066 11.2485 20.0672 10.9318 21 11.0122V6.25C21 4.45507 19.5449 3 17.75 3H11V7.75C11 9.54493 9.54493 11 7.75 11H3V17.75ZM9.5 3.44L3.44 9.5H7.75C8.7165 9.5 9.5 8.7165 9.5 7.75V3.44ZM19.0999 12.6695L13.1974 18.5719C12.8533 18.916 12.6092 19.3472 12.4911 19.8194L12.0334 21.6501C11.8344 22.4462 12.5556 23.1674 13.3517 22.9683L15.1824 22.5106C15.6545 22.3926 16.0857 22.1485 16.4299 21.8043L22.3323 15.9019C23.2249 15.0093 23.2249 13.5621 22.3323 12.6695C21.4397 11.7768 19.9925 11.7768 19.0999 12.6695Z" />
                         </svg>
                     </a>
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                    <form action="{{ route('departments.destroy', $department->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"

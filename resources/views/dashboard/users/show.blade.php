@@ -1,5 +1,5 @@
 <!-- KELOMPOK_1_KELAS_A -->
-@extends('admin.layouts.main')
+@extends('layouts.sidebar')
 @section('content')
 <h1 class="text-3xl font-semibold mb-6 text-center">Detail Anggota</h1>
 
@@ -12,6 +12,9 @@
             <li>{{ $user->email }}</li>
             <li>{{ $user->alamat }}</li>
             <li>{{ $user->departemen_id }}</li>
+            <li>{{ $user->jabatan }}</li>
+            <li>{{ $user->angkatan }}</li>
+            <li>{{ $user->jenis_kelamin }}</li>
         </ul>
     </div>
 </div>

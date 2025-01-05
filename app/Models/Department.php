@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
+    protected $table = 'departments';
 
     protected $fillable = [
         'nama',
         'detail',
-        'image'
+        'icon'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'departemen_id', 'id');
+    }
 }

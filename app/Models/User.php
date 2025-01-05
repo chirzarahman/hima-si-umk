@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -22,12 +23,13 @@ class User extends Authenticatable
         'email',
         'password',
         'nim',
+        'nid',
         'departemen_id',
         'jabatan',
         'angkatan',
         'jenis_kelamin',
         'alamat',
-        'image',
+        'foto',
     ];
 
     /**
@@ -52,4 +54,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    // public function department()
+    // {
+    //     return $this->hasMany(Department::class, 'departemen_id', 'id');
+    // }
 }

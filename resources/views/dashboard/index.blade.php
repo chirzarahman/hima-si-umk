@@ -1,15 +1,16 @@
 <!-- KELOMPOK_1_KELAS_A -->
-@extends('admin.layouts.main')
+@extends('layouts.sidebar')
 @section('content')
 <div class="grid grid-cols-3 gap-x-4">
     <div
         class="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 flex justify-between items-center dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-red-600 dark:text-white">Program Kerja</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-red-600 dark:text-white">Acara</h5>
         </div>
         <dt
             class="w-20 h-20 rounded-full bg-red-100 dark:bg-gray-500 text-red-600 dark:text-red-300 text-4xl font-medium flex items-center justify-center mb-1">
-            12</dt>
+            {{ $events }}
+        </dt>
     </div>
 
     <div
