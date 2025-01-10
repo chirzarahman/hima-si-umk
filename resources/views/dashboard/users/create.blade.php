@@ -1,4 +1,4 @@
-<!-- KELOMPOK_1_KELAS_A -->
+<!-- MOHAMMAD KAHIRUL ANWAR (202253078) -->
 @extends('layouts.sidebar')
 @section('content')
 <h1 class="text-3xl font-semibold mb-6 text-center">Tambah Anggota</h1>
@@ -67,8 +67,12 @@
                 <select id="jabatan" name="jabatan"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500">
                     <option selected disabled hidden value="">Pilih Jabatan</option>
-                    <option value="Dosen Pebimbing">Dosen Pebimbing</option>
-                    <option value="Ketua Departemen">Ketua Departemen</option>
+                    <option value="Dosen Pebimbing"
+                        {{ old('jabatan', $data->jabatan ?? '') == 'Dosen Pebimbing' ? 'selected' : '' }}>Dosen
+                        Pebimbing</option>
+                    <option value="Ketua Departemen"
+                        {{ old('jabatan', $data->jabatan ?? '') == 'Ketua Departemen' ? 'selected' : '' }}>Ketua
+                        Departemen</option>
                     <option value="Anggota">Anggota</option>
                 </select>
                 <div class="my-2 text-sm text-red-600 dark:text-red-500">

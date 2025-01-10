@@ -1,4 +1,4 @@
-<!-- KELOMPOK_1_KELAS_A -->
+<!-- MOH ADI KURNIAWAN (202253057) -->
 @extends('layouts.sidebar')
 @section('content')
 <h1 class="text-3xl font-semibold mb-6 text-center">Edit Departemen</h1>

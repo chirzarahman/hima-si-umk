@@ -1,5 +1,5 @@
 <?php
-
+// CHIRZA RAHMAN (202253048)
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('email', '!=', 'admin@mail.com')->get();
         return view('dashboard.users.index', ["title" => "Himapro SI UMK"], compact('users'));
     }
 
@@ -79,15 +79,14 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            // 'nama' => 'required|max:255',
-            // 'nim' => ['required', 'min:9', 'max:9', 'unique:users'],
-            // 'email' => 'required|email:dns|unique:users',
-            // 'password' => 'required|min:5|max:255',
-            // 'departemen_id' => 'required|exists:departments,id',
-            // 'jabatan' => 'required|max:255',
-            // 'angkatan' => 'required|max:255',
-            // 'jenis_kelamin' => 'required|max:255',
-            // 'alamat' => 'required',
+            'nama' => 'required|max:255',
+            'nim' => ['required', 'min:9', 'max:9', 'unique:users'],
+            'email' => 'required|email:dns|unique:users',
+            'departemen_id' => 'required|exists:departments,id',
+            'jabatan' => 'required|max:255',
+            'angkatan' => 'required|max:255',
+            'jenis_kelamin' => 'required|max:255',
+            'alamat' => 'required',
         ]);
 
         $input = $request->all();

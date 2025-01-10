@@ -1,4 +1,4 @@
-<!-- KELOMPOK_1_KELAS_A -->
+<!-- MOHAMMAD KAHIRUL ANWAR (202253078) -->
 @extends('layouts.sidebar')
 @section('content')
 <h1 class="text-3xl font-semibold mb-6 text-center">Edit Anggota</h1>

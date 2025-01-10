@@ -1,5 +1,5 @@
 <?php
-
+// CHIRZA RAHMAN (202253048)
 namespace App\Http\Controllers;
 
 use App\Models\Document;
@@ -99,5 +99,18 @@ class DocumentsController extends Controller
         }
         $document->delete();
         return redirect()->route('documents.index')->with('success', 'Dokumen berhasil didelete');
+    }
+
+    public function download($filename)
+    {
+        $filePath = storage_path('/public/documents/' . $filename);
+
+        // Periksa apakah file ada
+        if (!file_exists($filePath)) {
+            abort(404, 'File tidak ditemukan');
+        }
+
+        // Download file
+        return response()->download($filePath);
     }
 }

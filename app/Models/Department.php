@@ -1,5 +1,5 @@
 <?php
-
+// CHIRZA RAHMAN (202253048)
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,8 +16,8 @@ class Department extends Model
         'icon'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->hasMany(User::class, 'departemen_id', 'id');
+        return $this->hasMany(User::class, 'departemen_id','id');
     }
 }

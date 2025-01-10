@@ -1,5 +1,5 @@
 <?php
-
+// CHIRZA RAHMAN (202253048)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -32,6 +32,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return view('beranda', ["title" => "Himapro SI UMK"]);
+        return redirect('/');
     }
 }

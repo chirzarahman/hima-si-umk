@@ -1,4 +1,4 @@
-<!-- KELOMPOK_1_KELAS_A -->
+<!-- MOHAMMAD FAJAR SIRULLAH (202253086) -->
 @extends('layouts.main')
 @section('container')
 <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">

@@ -1,5 +1,5 @@
 <?php
-
+// CHIRZA RAHMAN (202253048)
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -57,11 +57,6 @@ class User extends Authenticatable
 
     public function department()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'departemen_id', 'id');
     }
-
-    // public function department()
-    // {
-    //     return $this->hasMany(Department::class, 'departemen_id', 'id');
-    // }
 }

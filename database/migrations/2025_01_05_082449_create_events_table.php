@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul')->nullable();
             $table->string('lokasi')->nullable();
-            $table->datetime('mulai')->nullable();
+            $table->string('mulai')->nullable();
             $table->string('selesai')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('poster')->nullable();
